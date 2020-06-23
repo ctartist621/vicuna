@@ -1,26 +1,43 @@
 #include <iostream>
 
+#include "alpaca/alpaca.h"
 #include "alpaca/config.h"
 #include "alpaca/streaming.h"
 #include "rapidjson/document.h"
 #include "rapidjson/prettywriter.h"
 #include "rapidjson/stringbuffer.h"
+#include <future>
+#include <thread>
+#include <vector>
 
-class Alpaca {
+class Alpaca : public std::enable_shared_from_this<Alpaca> {
  public:
   Alpaca() {
     // Parse the configuration from the environment
     this->_env = alpaca::Environment();
     if (alpaca::Status status = _env.parse(); !status.ok()) {
       std::cerr << "Error parsing environment: " << status.getMessage() << std::endl;
+      exit(status.getCode());
     } else {
       std::cout << "Environment parsing: " << status.getMessage() << std::endl;
+      _threads.emplace_back(std::thread(&Alpaca::_start_stream_handler, this));
     }
-    _start_stream_handler();
+  }
+
+  ~Alpaca() {
+    // set up thread barrier before this object is destroyed
+    std::for_each(_threads.begin(), _threads.end(), [](std::thread& t) { t.join(); });
+  }
+
+  // miscellaneous
+  std::shared_ptr<Alpaca> get_shared_this() {
+    return shared_from_this();
   }
 
  private:
   alpaca::Environment _env;
+
+  std::vector<std::thread> _threads;
 
   std::string _parse_stream_message(alpaca::stream::DataType data);
 

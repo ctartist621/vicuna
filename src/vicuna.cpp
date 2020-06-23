@@ -1,7 +1,8 @@
-#include "lib/Alpaca.h"
+#include "../lib/Alpaca.h"
+#include <iostream>
 
 int main(int argc, char* argv[]) {
-  Alpaca alpaca;
-
+  std::cout << "Hello! I am Vicuna, your automated trading bot." << std::endl;
+  Alpaca a;
   return 0;
 }
