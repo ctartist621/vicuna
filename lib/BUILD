@@ -7,3 +7,26 @@ cc_library(
   ],
   visibility = ["//src:__pkg__"],
 )
+
+cc_library(
+  name = "StockHistory",
+  srcs = ["StockHistory.cpp"],
+  hdrs = ["StockHistory.h"],
+  deps = [
+    "@com_github_marpaia_alpaca_trade_api_cpp//alpaca:alpaca",
+    ":Alpaca",
+  ],
+  visibility = ["//src:__pkg__"],
+)
+
+cc_library(
+  name = "Trade",
+  srcs = ["Trade.cpp"],
+  hdrs = ["Trade.h"],
+  deps = [
+    "@com_github_marpaia_alpaca_trade_api_cpp//alpaca:alpaca",
+    ":Alpaca",
+    ":StockHistory",
+  ],
+  visibility = ["//src:__pkg__"],
+)
