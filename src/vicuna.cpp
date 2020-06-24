@@ -1,5 +1,9 @@
 #include "../lib/Alpaca.h"
+#include "../lib/Trade.h"
+
 #include <iostream>
+#include <memory>
+#include <string>
 
 int main(int argc, char *argv[])
 {
@@ -23,16 +27,17 @@ int main(int argc, char *argv[])
       "TUFN",
       "AHCO",
       "ARGT",
-      "RVMD",
+      "RVMD"
   };
 
+  auto ap = std::make_shared<Alpaca>();
+  std::vector<std::unique_ptr<Trade>> traders;
+  
   std::cout << "Hello! I am Vicuna, your automated trading bot." << std::endl;
-  Alpaca a;
-  std::vector<alpaca::Bar> AAPL = a.MarketData_Bars("AAPL");
 
-  for(alpaca::Bar a : AAPL) {
-    std::cout << "AAPL: " << a.close_price << std::endl;
-
+  for (std::string symbol : symbols) {
+    std::cout << "Creating Trader for " << symbol << std::endl;
+    traders.emplace_back(std::make_unique<Trade>(ap, symbol));
   }
 
   return 0;
