@@ -15,7 +15,7 @@ std::string Alpaca::_parse_stream_message(alpaca::stream::DataType data) {
 };
 
 std::vector<alpaca::Bar> Alpaca::MarketData_Bars(const std::string symbol, const std::string timeframe) {
-  std::cout << "Retrieving bars for " << symbol << std::endl;
+  std::cout << "Retrieving bars for " << symbol << " timeframe " << timeframe << std::endl;
   auto client = alpaca::Client(_env);
 
   auto bars_response = client.getBars({symbol}, "", "", "", timeframe);
