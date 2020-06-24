@@ -1,4 +1,4 @@
-workspace(name = "alpaca_cpp_starter_template")
+workspace(name = "vicuna")
 
 ################################################################################
 # General Initialization

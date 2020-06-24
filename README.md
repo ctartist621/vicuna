@@ -6,7 +6,7 @@ Alpaca is a modern platform for algorithmic trading. You can use the Alpaca API 
 
 Bazel is an open-source build and test tool similar to Make, Maven, and Gradle. Bazel supports projects in multiple languages and builds outputs for multiple platforms. Bazel supports large codebases across multiple repositories, and large numbers of users. See the [Bazel Installation Instructions](https://docs.bazel.build/versions/master/install.html) for more information on installing Bazel on your system.
 
-## Defining Envrionment Variables
+## Defining Environment Variables
 
 You will need to define some environment variables for vicuna. These can be sourced by making a free account on the Alpaca website. Consider creating a file called `.env` with content like the following:
 

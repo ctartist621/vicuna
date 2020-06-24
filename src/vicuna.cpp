@@ -1,44 +1,38 @@
+#include "../lib/Alpaca.h"
 #include <iostream>
 
-#include "alpaca/config.h"
-#include "alpaca/streaming.h"
-#include "rapidjson/document.h"
-#include "rapidjson/prettywriter.h"
-#include "rapidjson/stringbuffer.h"
-
-int main(int argc, char* argv[]) {
-  // Parse the configuration from the environment
-  auto env = alpaca::Environment();
-  if (auto status = env.parse(); !status.ok()) {
-    std::cerr << "Error parsing environment: " << status.getMessage() << std::endl;
-    return status.getCode();
-  }
-
-  // Log trade updates
-  std::function<void(alpaca::stream::DataType data)> on_trade_update = [=](alpaca::stream::DataType data) {
-    rapidjson::Document d;
-    d.Parse(data.c_str());
-    rapidjson::StringBuffer s;
-    rapidjson::PrettyWriter<rapidjson::StringBuffer> writer(s);
-    d.Accept(writer);
-    std::cout << "Got trade update: " << s.GetString() << std::endl;
+int main(int argc, char *argv[])
+{
+  std::vector<std::string> symbols = {
+      "PLUG",
+      "INO",
+      "GNUS",
+      "PENN",
+      "UONE",
+      "WKHS",
+      "LLNW",
+      "NEPT",
+      "SPR",
+      "MESO",
+      "TBIO",
+      "JFU",
+      "XRF",
+      "WINS",
+      "VVNT",
+      "AGLE",
+      "TUFN",
+      "AHCO",
+      "ARGT",
+      "RVMD",
   };
 
-  // Log account updates
-  std::function<void(alpaca::stream::DataType data)> on_account_update = [=](alpaca::stream::DataType data) {
-    rapidjson::Document d;
-    d.Parse(data.c_str());
-    rapidjson::StringBuffer s;
-    rapidjson::PrettyWriter<rapidjson::StringBuffer> writer(s);
-    d.Accept(writer);
-    std::cout << "Got account update: " << s.GetString() << std::endl;
-  };
+  std::cout << "Hello! I am Vicuna, your automated trading bot." << std::endl;
+  Alpaca a;
+  std::vector<alpaca::Bar> AAPL = a.MarketData_Bars("AAPL");
 
-  // Create and run the stream handler
-  auto handler = alpaca::stream::Handler(on_trade_update, on_account_update);
-  if (auto status = handler.run(env); !status.ok()) {
-    std::cerr << "Error running stream handler: " << status.getMessage() << std::endl;
-    return status.getCode();
+  for(alpaca::Bar a : AAPL) {
+    std::cout << "AAPL: " << a.close_price << std::endl;
+
   }
 
   return 0;
