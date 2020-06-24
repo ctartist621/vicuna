@@ -1,4 +1,4 @@
-#include <iostream>
+#pragma once
 
 #include "alpaca/alpaca.h"
 #include "alpaca/config.h"
@@ -7,6 +7,7 @@
 #include "rapidjson/prettywriter.h"
 #include "rapidjson/stringbuffer.h"
 #include <future>
+#include <iostream>
 #include <thread>
 #include <vector>
 
@@ -28,6 +29,8 @@ class Alpaca : public std::enable_shared_from_this<Alpaca> {
     // set up thread barrier before this object is destroyed
     std::for_each(_threads.begin(), _threads.end(), [](std::thread& t) { t.join(); });
   }
+
+  std::vector<alpaca::Bar> MarketData_Bars(const std::string symbol);
 
   // miscellaneous
   std::shared_ptr<Alpaca> get_shared_this() {
