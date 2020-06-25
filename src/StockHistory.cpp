@@ -18,6 +18,7 @@ void StockHistory::RetrieveBars(const Timeframe timeframe, std::shared_ptr<Histo
   std::shared_ptr<History> h = history;
   auto f = [sym, a, h, timeframe]() {
     std::string t = "1Min";
+    int interval = 60;
     switch (timeframe) {
     case T5Min:
       t = "5Min";
