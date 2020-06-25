@@ -34,6 +34,22 @@ class StockHistory : public std::enable_shared_from_this<StockHistory> {
     std::for_each(threads.begin(), threads.end(), [](std::thread& t) { t.join(); });
   }
 
+  std::vector<alpaca::Bar> get1MinBars() {
+    return history._1Min;
+  }
+
+  std::vector<alpaca::Bar> get5MinBars() {
+    return history._5Min;
+  }
+
+  std::vector<alpaca::Bar> get15MinBars() {
+    return history._15Min;
+  }
+
+  std::vector<alpaca::Bar> get1DBars() {
+    return history._1D;
+  }
+
   void RetrieveBars(const Timeframe timeframe, std::shared_ptr<History> history);
 
   // miscellaneous
