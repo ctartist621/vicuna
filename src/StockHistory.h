@@ -6,9 +6,12 @@
 #include <future>
 #include <iostream>
 #include <memory>
+#include <mutex>
 #include <string>
 #include <thread>
 #include <vector>
+
+std::mutex mtx1Min, mtx5Min, mtx15Min, mtx1D;
 
 enum Timeframe { T1Min, T5Min, T15Min, T1D };
 
@@ -35,18 +38,22 @@ class StockHistory : public std::enable_shared_from_this<StockHistory> {
   }
 
   std::vector<alpaca::Bar> get1MinBars() {
+    std::unique_lock<std::mutex> lck(mtx1Min);
     return history._1Min;
   }
 
   std::vector<alpaca::Bar> get5MinBars() {
+    std::unique_lock<std::mutex> lck(mtx5Min);
     return history._5Min;
   }
 
   std::vector<alpaca::Bar> get15MinBars() {
+    std::unique_lock<std::mutex> lck(mtx15Min);
     return history._15Min;
   }
 
   std::vector<alpaca::Bar> get1DBars() {
+    std::unique_lock<std::mutex> lck(mtx1D);
     return history._1D;
   }
 

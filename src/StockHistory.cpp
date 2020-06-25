@@ -10,7 +10,6 @@ void StockHistory::RetrieveBars(const Timeframe timeframe, std::shared_ptr<Histo
   std::string sym = symbol;
   std::shared_ptr<Alpaca> a = alpaca;
   std::shared_ptr<History> h = history;
-
   auto f = [sym, a, h, timeframe]() {
     while (true) {
       int interval = 60;
