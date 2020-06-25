@@ -5,6 +5,13 @@
 #include <memory>
 #include <string>
 
+/**
+ * @brief Main function, starts traders for each symbol in symbols vector.
+ *
+ * @param argc
+ * @param argv
+ * @return int
+ */
 int main(int argc, char* argv[]) {
   std::vector<std::string> symbols = {"PLUG", "INO", "GNUS", "PENN", "UONE", "WKHS", "LLNW", "NEPT", "SPR",  "MESO",
                                       "TBIO", "JFU", "XRF",  "WINS", "VVNT", "AGLE", "TUFN", "AHCO", "ARGT", "RVMD"};

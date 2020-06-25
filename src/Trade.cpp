@@ -2,6 +2,12 @@
 #include <chrono>
 #include <string>
 
+/**
+ * @brief Calculates a Simple Moving average from the returned closing prices
+ * 
+ * @param bars 
+ * @return double 
+ */
 double SimpleMovingAverage(std::vector<alpaca::Bar> bars)
 {
   double sum = 0;
@@ -12,6 +18,10 @@ double SimpleMovingAverage(std::vector<alpaca::Bar> bars)
   return sum / bars.size();
 }
 
+/**
+ * @brief Calculates various technical indicators, and returns a BUY, HOLD, or SELL decision
+ * 
+ */
 void Trade::CheckIndicators()
 {
   while (true)
