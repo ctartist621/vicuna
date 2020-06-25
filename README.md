@@ -28,6 +28,55 @@ Vicuna
 |   +-- Trade.h - Trade class, that handles trade logic functionality
 |   +-- vicuna.cpp - Main file, with main function.
 ```
+
+##Capstone Project Rubric Requirements
+| CRITERIA (15/26)                                                                                 | FILE PATH                           | LINE NUMBERS   | NOTES                                                                                                                                                                                                |
+| ------------------------------------------------------------------------------------------------ | ----------------------------------- | -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **README (3/3)**                                                                                 |
+| *A README with instructions is included with the project.*                                       | ./README.md                         | *              |
+| *The README indicates which project is chosen.*                                                  | ./README.md                         | 1-11           |
+| *The README includes information about each rubric point addressed.*                             | ./README.md                         | 32-65          |
+|                                                                                                  |
+| **Compiling and Testing (1/1)**                                                                  |
+| *The submission must compile and run.*                                                           | ./WORKSPACE                         | *              | I chose bazel as the library I was interfacing with also used bazel.  I took time to make sure there were appropriate setup files for the workspace, and that it compiles and runs in the workspace. |
+|                                                                                                  | ./BUILD                             | *              |
+| **Loops, Functions, I/O (2/3)**                                                                  |
+| *The project demonstrates an understanding of C++ functions and control structures.*             | ./src/Trade.cpp                     | 14, 27, 31     |
+| *The project reads data from a file and process the data, or the program writes data to a file.* |                                     |                | While not a file, I chose to implement an SDK around a Trading API.                                                                                                                                  |
+| The project accepts user input and processes the input.                                          |
+|                                                                                                  |
+| **Object Oriented Programming (5/9)**                                                            |
+| *The project uses Object Oriented Programming techniques.*                                       | ./src/Trade.h, ./src/StockHistory.h |                | I utilized OOP to organize the data flow I implemented.                                                                                                                                              |
+| *Classes use appropriate access specifiers for class members.*                                   | ./src/StockHistory.h                | 65-98          | Getters for different hisstorical timeframes.                                                                                                                                                        |
+| *Class constructors utilize member initialization lists.*                                        | ./src/Trade.h                       | 25             |
+|                                                                                                  | ./src/StockHistory.h                | 43             |
+| *Classes abstract implementation details from their interfaces.*                                 |
+| *Classes encapsulate behavior.*                                                                  | ./src/Alpaca.h                      | 24-34          | Encapsulates Alpaca environment parsing                                                                                                                                                              |
+|                                                                                                  | ./src/Alpaca.h                      | 67-86          | Encapsulates Alpaca Stream Handler setup                                                                                                                                                             |
+| Classes follow an appropriate inheritance hierarchy.                                             |
+| Overloaded functions allow the same function to operate on different parameters.                 |
+| Derived class functions override virtual base class functions.                                   |
+| Templates generalize functions in the project.                                                   |
+|                                                                                                  |
+| **Memory Management (2/6)**                                                                      |
+| The project makes use of references in function declarations.                                    |
+| *The project uses destructors appropriately.*                                                    | ./src/Alpaca.h                      | 40-43          |
+|                                                                                                  | ./src/Trade.h                       | 33-36          |
+|                                                                                                  | ./src/StockHistory.h                | 55-58          |
+| The project uses scope / Resource Acquisition Is Initialization (RAII) where appropriate.        |
+| The project follows the Rule of 5.                                                               |
+| The project uses move semantics to move data, instead of copying it, where possible.             |
+| *The project uses smart pointers instead of raw pointers.*                                       | ./src/Trade.h                       | 25             |
+|                                                                                                  | ./src/StockHistory.h                | 43             |
+|                                                                                                  |
+| **Concurrency (2/4)**                                                                            |
+| *The project uses multithreading.*                                                               | ./src/Alpaca.h                      | 32             |
+|                                                                                                  | ./src/Trade.h                       | 26             |
+|                                                                                                  | ./src/StockHistory.h                | 51             |
+| A promise and future is used in the project.                                                     |
+| *A mutex or lock is used in the project.*                                                        | ./src/StockHistory.h                | 66, 76, 86, 96 |
+| A condition variable is used in the project.                                                     |
+
 ## Bazel
 Bazel is an open-source build and test tool similar to Make, Maven, and Gradle. Bazel supports projects in multiple languages and builds outputs for multiple platforms. Bazel supports large codebases across multiple repositories, and large numbers of users. See the [Bazel Installation Instructions](https://docs.bazel.build/versions/master/install.html) for more information on installing Bazel on your system.
 
