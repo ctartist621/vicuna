@@ -36,10 +36,10 @@ Bazel is an open-source build and test tool similar to Make, Maven, and Gradle. 
 You will need to define some environment variables for vicuna. These can be sourced by making a free account on the Alpaca website. Consider creating a file called `.env` with content like the following:
 
 ```bash
-APCA_API_KEY_ID="<Alpaca API Key ID>"
-APCA_API_SECRET_KEY="<Alpaca API Secret Key>"
-APCA_API_BASE_URL=paper-api.alpaca.markets
-APCA_API_DATA_URL=data.alpaca.markets
+export APCA_API_KEY_ID="<Alpaca API Key ID>"
+export APCA_API_SECRET_KEY="<Alpaca API Secret Key>"
+export APCA_API_BASE_URL=paper-api.alpaca.markets
+export APCA_API_DATA_URL=data.alpaca.markets
 ```
 
 Then, you can configure this file to be sourced automatically into your shell with a tool like [dotenv](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/dotenv) or you can manually `source .env` before running vicuna.
@@ -63,4 +63,4 @@ $ bazel build //src:vicuna
 $ ./bazel-bin/src/vicuna
 ```
 
-Finally, `start.sh` will source the .env and 
+Finally, `start.sh` will source the .env and also start the program.
